@@ -6,7 +6,7 @@ import { Context } from '../../context/Context'
 import Typewriter from './Typewriter'
 
 const Main = () => {
-    const { onSent, setInput, input, recentPrompt, showResult, loading, resultData } = useContext(Context);
+    const { onSent, setInput, input, recentPrompt, prevPrompt, showResult, loading, resultData } = useContext(Context);
     return (
         <div className='main'>
             <div className="nav">
@@ -43,11 +43,12 @@ const Main = () => {
                 </>) : (
                     <>
                         <div className='result'>
-                            <div className="title">
+                            <div className="result-title">
                                 <img src={assets.user_icon} alt="user" />
+                                {/* <p>{prevPrompt[prevPrompt.length - 1]}</p> */}
                                 <p>{recentPrompt}</p>
                             </div>
-                            <div className="resultData">
+                            <div className="result-data">
                                 <img src={assets.gemini_icon} alt="gemini" />
                                 {loading ? <div className='loader'><hr />
                                     <hr />
@@ -69,7 +70,8 @@ const Main = () => {
                         <div>
                             <img src={assets.gallery_icon} alt="gallery" />
                             <img src={assets.mic_icon} alt="mic" />
-                            <img src={assets.send_icon} onClick={() => onSent()} alt="send" />
+                            {input && <img src={assets.send_icon} onClick={() => onSent()} alt="send" />}
+
                         </div>
                     </div>
                     <p className='bottom-info'>

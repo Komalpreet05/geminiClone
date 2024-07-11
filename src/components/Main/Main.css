@@ -129,13 +129,6 @@
   display: none;
 }
 
-.result-title {
-  margin: 40px 0px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
 .result img {
   width: 40px;
   border-radius: 50%;
@@ -172,6 +165,12 @@
     background-position: 800px 0px;
   }
 }
+.result-title {
+  gap: 20px;
+  align-items: center;
+  display: flex;
+  margin: 40px 0px;
+}
 
 .result-data p {
   font-size: 17px;
@@ -182,4 +181,20 @@
 .test {
   font-size: 25px;
   background-color: red;
+}
+
+@media (max-width: 600px) {
+  .main-bottom input {
+    flex: none;
+    width: 150px;
+  }
+  .main-bottom img {
+    width: 20px;
+  }
+  .search-box {
+    padding: 5px 10px;
+  }
+  .search-box div {
+    gap: 5px;
+  }
 }

@@ -16,16 +16,30 @@ const ContextProvider = (props) => {
         }, 75 * index)
     }
 
-    const onSent = async () => {
+    const newChat = () => {
+        setLoading(false)
+        setShowResult(false)
+
+    }
+
+    const onSent = async (prompt) => {
         setResultData("");
         setLoading(true);
         setShowResult(true);
-        setRecentPrompt(input)
-        const res = await run(input);
+        let res;
+        if (prompt !== undefined) {
+            res = await run(prompt)
+            setRecentPrompt(prompt)
+        }
+        else {
+            setPrevPrompt(prev => [...prev, input])
+            setRecentPrompt(input)
+            res = await run(input)
+        }
 
         let newResArray = res.split("**");
         console.log(newResArray);
-        let newString;
+        let newString = "";
         // console.log(5 % 2)
 
         for (let i = 0; i < newResArray.length; i++) {
@@ -54,7 +68,7 @@ const ContextProvider = (props) => {
     }
     // onSent("What is react js");
     const contextValue = {
-        input, setInput, recentPrompt, setRecentPrompt, prevPrompt, setPrevPrompt, showResult, setShowResult, loading, setLoading, resultData, setResultData, onSent
+        input, setInput, recentPrompt, setRecentPrompt, prevPrompt, setPrevPrompt, showResult, setShowResult, loading, setLoading, resultData, setResultData, onSent, newChat
     }
 
     return (
