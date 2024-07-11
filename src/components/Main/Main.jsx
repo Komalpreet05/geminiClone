@@ -3,6 +3,7 @@ import "./Main.css"
 import { assets } from '../../assets/assets'
 import { useContext } from 'react'
 import { Context } from '../../context/Context'
+import Typewriter from './Typewriter'
 
 const Main = () => {
     const { onSent, setInput, input, recentPrompt, showResult, loading, resultData } = useContext(Context);
@@ -51,7 +52,10 @@ const Main = () => {
                                 {loading ? <div className='loader'><hr />
                                     <hr />
                                     <hr /></div> :
-                                    <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
+                                    <div>
+                                        <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
+                                        {/* <Typewriter text={resultData} delay={3}></Typewriter> */}
+                                    </div>
                                 }
                             </div>
                         </div>
