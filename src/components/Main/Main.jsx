@@ -4,9 +4,51 @@ import { assets } from '../../assets/assets'
 import { useContext } from 'react'
 import { Context } from '../../context/Context'
 import Typewriter from './Typewriter'
+import { useRef } from 'react';
 
 const Main = () => {
-    const { onSent, setInput, input, recentPrompt, prevPrompt, showResult, loading, resultData } = useContext(Context);
+    const { onSent, setInput, input, recentPrompt, prevPrompt, showResult, loading, resultData, cardText, setCardText } = useContext(Context);
+    console.log(cardText)
+    const myRef = useRef(0);
+    function submitHandler(e) {
+        e.preventDefault();
+        onSent();
+        setCardText("");
+    }
+    const cardData = [
+        {
+            text: "Give me a walkthrough of The Byzantine Empire",
+            link: assets.compass_icon,
+            altText: "Compass"
+        },
+        {
+            text: "Create a list of power phrases for my resume",
+            link: assets.bulb_icon,
+            altText: "Bulb"
+        },
+        {
+            text: "Briefly summarize this concept: urban planning",
+            link: assets.message_icon,
+            altText: "message"
+        },
+        {
+            text: "Compare the differences between pickleball and tennis",
+            link: assets.code_icon,
+            altText: "code_icon"
+        }
+    ]
+
+    const cardSearch = (text) => {
+        setCardText(text);
+        setInput(text);
+        myRef.current.focus();
+
+        // onSent();
+    }
+    let x = document.getElementsByClassName('input');
+    console.log(x)
+
+    // console.log(test)
     return (
         <div className='main'>
             <div className="nav">
@@ -20,7 +62,17 @@ const Main = () => {
                         <p>How can I help you today</p>
                     </div>
                     <div className="cards">
-                        <div className="card">
+                        {
+                            cardData.map((cardItem, index) => {
+                                return (
+                                    <div className="card" onClick={() => cardSearch(cardItem.text)} key={index}>
+                                        <p>{cardItem.text}</p>
+                                        <img src={cardItem.link} alt={cardItem.altText} />
+                                    </div>
+                                )
+                            })
+                        }
+                        {/* <div className="card">
                             <p>Give me a walkthrough of The Byzantine Empire</p>
                             <img src={assets.compass_icon} alt="compass" />
                         </div>
@@ -38,7 +90,7 @@ const Main = () => {
                         <div className="card">
                             <p>Compare the differences between pickleball and tennis</p>
                             <img src={assets.code_icon} alt="code" />
-                        </div>
+                        </div> */}
                     </div>
                 </>) : (
                     <>
@@ -64,7 +116,27 @@ const Main = () => {
                 )}
 
 
-                <div className="main-bottom">
+                <form onSubmit={submitHandler} className="main-bottom">
+                    <div className="search-box" >
+                        <input type="text" onChange={(e) => setInput(e.target.value)} value={cardText ? cardText : input} placeholder='Enter a prompt here' ref={myRef} />
+                        <div>
+                            <img src={assets.gallery_icon} alt="gallery" />
+                            <img src={assets.mic_icon} alt="mic" />
+
+                            {
+                                input &&
+                                <button className='btn-send'>
+                                    <img src={assets.send_icon} alt="send" />
+                                </button>
+                            }
+                        </div>
+                    </div>
+                    <p className='bottom-info'>
+                        Gemini may display inaccurate info, including about people, so double-check its responses. Your privacy & Gemini Apps
+                    </p>
+                </form>
+
+                {/* <div className="main-bottom">
                     <div className="search-box">
                         <input type="text" onChange={(e) => setInput(e.target.value)} value={input} placeholder='Enter a prompt here' />
                         <div>
@@ -77,7 +149,7 @@ const Main = () => {
                     <p className='bottom-info'>
                         Gemini may display inaccurate info, including about people, so double-check its responses. Your privacy & Gemini Apps
                     </p>
-                </div>
+                </div> */}
             </div>
         </div>
     )

@@ -9,6 +9,7 @@ const ContextProvider = (props) => {
     const [showResult, setShowResult] = useState(false);
     const [loading, setLoading] = useState(false);
     const [resultData, setResultData] = useState("");
+    const [cardText, setCardText] = useState("");
 
     const delayPara = (index, nextWord) => {
         setTimeout(function () {
@@ -33,6 +34,7 @@ const ContextProvider = (props) => {
         }
         else {
             setPrevPrompt(prev => [...prev, input])
+            // localStorage.setItem("recents", JSON.stringify(prevPrompt));
             setRecentPrompt(input)
             res = await run(input)
         }
@@ -65,10 +67,12 @@ const ContextProvider = (props) => {
         setLoading(false);
         setInput("");
 
+
+
     }
     // onSent("What is react js");
     const contextValue = {
-        input, setInput, recentPrompt, setRecentPrompt, prevPrompt, setPrevPrompt, showResult, setShowResult, loading, setLoading, resultData, setResultData, onSent, newChat
+        input, setInput, recentPrompt, setRecentPrompt, prevPrompt, setPrevPrompt, showResult, setShowResult, loading, setLoading, resultData, setResultData, onSent, newChat, setCardText, cardText
     }
 
     return (

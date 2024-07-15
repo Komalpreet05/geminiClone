@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 * {
   padding: 0;
   margin: 0;
@@ -11,6 +14,33 @@
   min-height: 100vh;
   display: flex;
   animation: fadeIn 1.5s;
+}
+
+:root {
+  --light-gray: #f0f4f9;
+  --medium-gray: #e6eaf1;
+  --gray: grey;
+  --black: black;
+  --white: white;
+  --background-gray: #e2e6eb;
+  --ham-black: black;
+  --sidebar-text: black;
+  --hover-side-back: #e2e6eb;
+  --card-text: #585858;
+  --card-hover: #dfe4ea;
+}
+[data-theme="dark"] {
+  --light-gray: #1e1f20;
+  --medium-gray: #1a1a1c;
+  --gray: grey;
+  --black: white;
+  --white: black;
+  --background-gray: #e2e6eb;
+  --ham-black: rgba(255, 255, 255, 0.87);
+  --sidebar-text: #e3e3e3;
+  --hover-side-back: #303131;
+  --card-text: rgba(255, 255, 255, 0.87);
+  --card-hover: #343537;
 }
 
 @keyframes fadeIn {
