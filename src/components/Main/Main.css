@@ -15,11 +15,37 @@
   color: #585858;
 }
 
+.form-icons {
+  color: var(--card-text);
+
+  /* padding: 10px; */
+}
+
+.form-icon-con {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 45px;
+}
+
+.form-icon-con:hover {
+  background-color: var(--card-hover);
+  padding: 7px;
+}
+
+.form-icons:hover {
+  /* border-radius: 50%; */
+}
+
 .main .nav img {
   width: 40px;
   border-radius: 50%;
 }
-
+.main .nav p {
+  color: var(--card-text);
+}
 .main-container {
   max-width: 900px;
   margin: auto;
@@ -74,6 +100,10 @@
   background-color: var(--card-hover);
 }
 
+.input-text {
+  color: var(--card-text);
+}
+
 .main-bottom {
   position: absolute;
   bottom: 0;
@@ -107,10 +137,9 @@
   outline: none;
 }
 
-.search-box div {
+.searchboxDiv {
   display: flex;
   align-items: center;
-  gap: 15px;
 }
 
 .bottom-info {

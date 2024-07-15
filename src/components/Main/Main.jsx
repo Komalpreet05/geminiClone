@@ -4,6 +4,9 @@ import { assets } from '../../assets/assets'
 import { useContext } from 'react'
 import { Context } from '../../context/Context'
 import Typewriter from './Typewriter'
+import { BiSolidImageAdd } from "react-icons/bi";
+import { BiMicrophone } from "react-icons/bi";
+import { AiOutlineSend } from "react-icons/ai";
 import { useRef } from 'react';
 
 const Main = () => {
@@ -118,16 +121,22 @@ const Main = () => {
 
                 <form onSubmit={submitHandler} className="main-bottom">
                     <div className="search-box" >
-                        <input type="text" onChange={(e) => setInput(e.target.value)} value={cardText ? cardText : input} placeholder='Enter a prompt here' ref={myRef} />
-                        <div>
-                            <img src={assets.gallery_icon} alt="gallery" />
-                            <img src={assets.mic_icon} alt="mic" />
+                        <input type="text" onChange={(e) => setInput(e.target.value)} value={cardText ? cardText : input} placeholder='Enter a prompt here' ref={myRef} className='input-text' />
+                        <div className='searchboxDiv'>
+                            <div className='form-icon-con'>
+                                <BiSolidImageAdd className='form-icons' fontSize={'25px'} />
+                            </div>
+                            <div className='form-icon-con'>
+                                <BiMicrophone className='form-icons' fontSize={'25px'} />
+                            </div>
 
                             {
                                 input &&
-                                <button className='btn-send'>
-                                    <img src={assets.send_icon} alt="send" />
-                                </button>
+                                <div>
+                                    <button className='btn-send form-icon-con'>
+                                        <AiOutlineSend className='form-icons' fontSize={'25px'} />
+                                    </button>
+                                </div>
                             }
                         </div>
                     </div>
