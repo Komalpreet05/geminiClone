@@ -16,7 +16,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 //     HarmBlockThreshold,
 // } = require("@google/generative-ai");
 
-const apiKey = 'AIzaSyCd5aiWkRBiANkhTwF7LsGJatN5mXxkKTA';
+const apiKey = import.meta.env.VITE_API_KEY;
 const genAI = new GoogleGenerativeAI(apiKey);
 
 const model = genAI.getGenerativeModel({
